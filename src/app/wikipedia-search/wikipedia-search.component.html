@@ -1,10 +1,16 @@
-<div>
-  <h2>Wikipedia Search</h2>
-  <input (input)="term$.next($event.target.value)">
-  <ul>
-    <li *ngFor="let item of items; let key = index;">
-      <a [href]="data[3][key]" target="_blank">{{item}}</a>
-      <p>{{data[2][key]}}</p>
-    </li>
-  </ul>
+<div class="content">
+  <md-input-container>
+    <input mdInput placeholder="Search Query" (input)="term$.next($event.target.value)">
+  </md-input-container>
+
+  <md-list>
+    <md-list-item *ngFor="let item of items; let key = index;">
+      <h3 md-line>
+        <a [href]="data[3][key]" target="_blank">
+          {{item}}
+        </a>
+      </h3>
+      <p md-line *ngIf="data[2][key]"> {{data[2][key]}} </p>
+    </md-list-item>
+  </md-list>
 </div>
