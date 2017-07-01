@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Renderer } from '@angular/core';
 import { WikipediaSearchService } from './wikipedia-search.service';
 import { Subject } from 'rxjs/Subject';
 //application wide shared Rx operators
@@ -17,7 +17,9 @@ export class WikipediaSearchComponent implements OnInit {
   items:Array<string>;
   data;
   term$ = new Subject<string>();
-  constructor(private wikipedia:WikipediaSearchService) {
+
+  @ViewChild('input') input;
+  constructor(private wikipedia:WikipediaSearchService, private renderer:Renderer) {
   }
 
   ngOnInit() {
@@ -26,6 +28,14 @@ export class WikipediaSearchComponent implements OnInit {
         this.items = results[1];
         this.data = results;
       });
+  }
+
+  ngAfterViewInit(){
+    this.renderer.invokeElementMethod(
+      this.input.nativeElement,
+      'focus',
+      []
+    )
   }
 
 }

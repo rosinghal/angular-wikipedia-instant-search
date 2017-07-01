@@ -1,6 +1,6 @@
 <div class="content">
   <md-input-container>
-    <input mdInput placeholder="Search Query" (input)="term$.next($event.target.value)">
+    <input mdInput placeholder="Search Query" (input)="term$.next($event.target.value)" #input>
   </md-input-container>
 
   <md-list>
