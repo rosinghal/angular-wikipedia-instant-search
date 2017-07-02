@@ -1,3 +1,9 @@
 .content {
   padding: 10px;
 }
+
+@media screen and (max-width: 600px) {
+  .full-width {
+    width: 100%;
+  }
+}
